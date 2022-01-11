@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://cdn-icons.flaticon.com/png/512/5784/premium/5784079.png?token=exp=1641865558~hmac=87d8124837223cecbcfe810a7fc9c87c">
+	<link rel="stylesheet" href="./style.css">
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+
+    <title>موسوعة الاحاديث</title>
+</head>
+
+<body>
+    <div class="header-title">
+        <h1 class="title">موسوعة الاحاديث</h1>
+        <h3 class="sub-title">الموقع مصمم للبحث عن صحة الاحاديث فقط</h3>
+        <h6>كيفية الاستعمال : </h6>
+        <ol class="guide">
+            <li>اكتب الحديث كاملا او فقط الكلمات الموجودة في الحديث</li>
+            <li>اضغط زر البحث</li>
+            <li>تفقد النتائج تحت خانة البحث</li>
+        </ol>
+    </div>
+    <div id="page-wrap">
+		<span class=" label-search">أدخل كلمات البحث    : </span>
+		<input type="text" id="skey" />
+		<button onclick="check_hadith()" > بحث </button>
+		
+		<div id="dorar" class="tagline">
+				
+		</div>
+	</div>
+    
+    
+
+
+    <script type="text/javascript" src="js/jquery-1.2.6.min.js"></script>
+    <script type="text/javascript">
+        function check_hadith() {
+
+            $.getJSON("http://dorar.net/dorar_api.json?skey=" + $("#skey").attr("value") + "&callback=?", function (
+                data) {
+
+                $("#dorar").html("");
+                $.each(data.ahadith, function (index, item) {
+                    $("#dorar").append("<span class='qalink' >" + item + "</span>");
+                });
+            });
+        }
+    </script>
+    <script>
+        function updatemenu() {
+  if (document.getElementById('responsive-menu').checked == true) {
+    document.getElementById('menu').style.borderBottomRightRadius = '0';
+    document.getElementById('menu').style.borderBottomLeftRadius = '0';
+  }else{
+    document.getElementById('menu').style.borderRadius = '10px';
+  }
+}
+    </script>
+    <script>
+        ScrollReveal().reveal('.tagline', { delay: 500 });
+    </script>
+    
+</body>
+
+</html>
